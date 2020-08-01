@@ -1,0 +1,52 @@
+.img-div {
+    padding-left: 0px;
+    padding-right: 0px;
+    position: relative;
+    width: 100%;
+}
+
+.img {
+    height: 85vh;
+    object-fit:contain
+}
+
+.row {
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+.button-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.button-container:before {
+    content: ' ';
+    display: block;
+    /* adjust 'height' to position overlay content vertically */
+    height: 50%;
+}
+  
+.button-container .btn:hover {
+    background-color: black;
+}
+
+.btn-carrito {
+    border-radius: 35px;
+}
+
+#logo {
+    width: 50px;
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
