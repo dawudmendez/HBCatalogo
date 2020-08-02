@@ -44,6 +44,8 @@ class Carrito {
 
         mensaje += "%0A";
         mensaje += "Total:%20$" + total + ".";
+        mensaje += "%0A";
+        mensaje += "Pedido%20desde%20el%20catalogo%20online.";
     
         return mensaje;
         

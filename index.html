@@ -26,7 +26,7 @@
             <a class="navbar-brand" href="#"><img id="logo" src="src/img/logo/logo.png"></a>
 
             <span class="navbar-text">
-                <i id="cart" class="fas fa-shopping-cart"></i>                
+                <i id="cart" class="fas fa-shopping-cart">0</i>                
             </span>
             
             
@@ -195,12 +195,40 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="vaciar_carrito_modal_body">
                 ¿Seguro que desea vaciar su carrito de compras?
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary" id="vaciar_carrito_btn">Vaciar Carrito</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Contacto -->
+    <div class="modal fade" id="contacto_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <strong>Home Basic</strong></br>
+                <a href="http://www.homebasic.com.ar" target="_blank">http://www.homebasic.com.ar</a></br>
+                Pronto tendrás acceso a nuestra tienda online.</br>
+                </br>
+                <strong>Comodoro Py 3195</strong></br>
+                <strong>Gregorio de Laferrere</strong></br>
+                <i class="fa fa-phone fa-flip-horizontal"></i> <strong>(011) 4457-6407</strong></br>
+
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
         </div>
@@ -220,13 +248,26 @@
                 if(carro.productos_count == 0) {
                     $("#ver_carrito_modal_body").text("Su carrito de compras está vacío");
                     $("#enviar_carrito_btn").attr("href", "#");
+                    $("#enviar_carrito_btn").hide();
                 }
                 else{
                     $("#ver_carrito_modal_body").html(carro.MostrarContenido());
-                    //var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491122369670&text=";
-                    var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491161067766&text=";
+                    var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491122369670&text=";
                     whatsapp_url += carro.GenerarMensaje();
                     $("#enviar_carrito_btn").attr("href", whatsapp_url);
+                    $("#enviar_carrito_btn").show();
+                }
+
+            });
+
+            $("#vaciar_carrito").click(function(){
+                if(carro.productos_count == 0) {
+                    $("#vaciar_carrito_modal_body").text("Su carrito de compras está vacío");
+                    $("#vaciar_carrito_btn").hide();
+                }
+                else{
+                    $("#vaciar_carrito_modal_body").html("¿Seguro que desea vaciar su carrito de compras?");
+                    $("#vaciar_carrito_btn").show();
                 }
 
             });
@@ -234,6 +275,8 @@
             $("#vaciar_carrito_btn").click(function(){
                 carro.VaciarCarrito();
                 $("#cart").text(carro.productos_count);
+                alert("Carrito vaciado");
+                $('#vaciar_carrito_modal').modal('hide')
             })
             
         });
