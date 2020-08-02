@@ -1,0 +1,79 @@
+{
+    "productos":[
+        {
+            "id": 40940045,
+            "nombre": "Plato playo Story",
+            "precio": 199.99,
+            "pagina": 2
+        },
+        {
+            "id": 40940047,
+            "nombre": "Taza Toy Story",
+            "precio": 169.99,
+            "pagina": 2
+        },
+        {
+            "id": 40940046,
+            "nombre": "Vaso con sorbete Toy Story",
+            "precio": 139.99,
+            "pagina": 2
+        },
+        {
+            "id": 40940048,
+            "nombre": "Lunchera Toy Story",
+            "precio": 449.99,
+            "pagina": 2
+        },
+        {
+            "id": 5800200,
+            "nombre": "Jabón Líquido Toy Story",
+            "precio": 189.99,
+            "pagina": 3
+        },
+        {
+            "id": 5800201,
+            "nombre": "Eau de parfum Toy Story",
+            "precio": 399.99,
+            "pagina": 3
+        },
+        {
+            "id": 5800203,
+            "nombre": "Shampoo 3 en 1 Toy Story",
+            "precio": 549.99,
+            "pagina": 3
+        },
+        {
+            "id": 5101007,
+            "nombre": "Colonia para bebés Manitos Arrorró",
+            "precio": 139.99,
+            "pagina": 5
+        }
+    ],
+    "paginas":[
+        {
+            "pag": 1,
+            "imagen": "src/img/catalogo1.jpg",
+            "productos": false
+        },
+        {
+            "pag": 2,
+            "imagen": "src/img/catalogo2.jpg",
+            "productos": true
+        },
+        {
+            "pag": 3,
+            "imagen": "src/img/catalogo3.jpg",
+            "productos": true
+        },
+        {
+            "pag": 4,
+            "imagen": "src/img/catalogo4.jpg",
+            "productos": false
+        },
+        {
+            "pag": 5,
+            "imagen": "src/img/catalogo5.jpg",
+            "productos": true
+        }
+    ]
+}

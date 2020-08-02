@@ -13,13 +13,11 @@
     <link href="src/font-awesome/css/all.css" rel="stylesheet">
 
     <link rel="stylesheet" href="src/styles/styles.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-    
+    <script src="src/js/cart.js"></script>    
 
     <title>Home Basic - Catálogo</title>
+    <link rel="icon" type="image/png" href="src/img/logo/logo.png">
+
 </head>
 <body>
 
@@ -38,13 +36,13 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" id="ver_carrito" href="#" data-toggle="modal" data-target="#ver_carrito_modal">Ver carrito <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" id="vaciar_carrito" href="#" data-toggle="modal" data-target="#vaciar_carrito_modal">Vaciar carrito</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" id="contacto" href="#" data-toggle="modal" data-target="#contacto_modal">Contacto</a>
                     </li>
                 </ul>                
             </div>
@@ -96,10 +94,10 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Lunchera Toy Story</a>
-                                    <a class="dropdown-item" href="#">Plato Playo Toy Story</a>
-                                    <a class="dropdown-item" href="#">Taza Toy Story</a>
-                                    <a class="dropdown-item" href="#">Vaso con sorbete Toy Story</a>
+                                    <a class="dropdown-item btn-product" id="40940045" precio="199.99" href="#">Lunchera Toy Story</a>
+                                    <a class="dropdown-item btn-product" id="40940047" precio="169.99" href="#">Plato Playo Toy Story</a>
+                                    <a class="dropdown-item btn-product" id="40940046" precio="139.99" href="#">Taza Toy Story</a>
+                                    <a class="dropdown-item btn-product" id="40940048" precio="449.99" href="#">Vaso con sorbete Toy Story</a>
                                 </div>    
                             </div>
                         </div>
@@ -115,9 +113,9 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Jabón Líquido Infantil Toy Story x 150ml</a>
-                                    <a class="dropdown-item" href="#">Perfume Infantil Toy Story x 50ml</a>
-                                    <a class="dropdown-item" href="#">Shampoo 2 en 1 Toy Story x 400ml</a>
+                                    <a class="dropdown-item btn-product" id="5800200" precio="189.99" href="#">Jabón Líquido Infantil Toy Story x 150ml</a>
+                                    <a class="dropdown-item btn-product" id="5800201" precio="399.99" href="#">Perfume Infantil Toy Story x 50ml</a>
+                                    <a class="dropdown-item btn-product" id="5800203" precio="549.99" href="#">Shampoo 2 en 1 Toy Story x 400ml</a>
                                 </div>    
                             </div>
                         </div>
@@ -141,7 +139,7 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Colonia Para Bebés Manitos Arrorró x 108ml</a>
+                                    <a class="dropdown-item btn-product" id="5101007" precio="139.99" href="#">Colonia Para Bebés Manitos Arrorró x 108ml</a>
                                 </div>    
                             </div>
                         </div>
@@ -164,6 +162,86 @@
         </div>
         
     </div>
+
+    <!-- Modals -->
+    <!-- Ver carrito -->
+    <div class="modal fade" id="ver_carrito_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Carrito de compras</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" id="ver_carrito_modal_body">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <!-- <button type="button" class="btn btn-primary" id="enviar_carrito_btn" href="#">Enviar Carrito</button> -->
+            <a href="#" class="btn btn-primary" target="_blank" id="enviar_carrito_btn">Enviar Carrito</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Vaciar carrito -->
+    <div class="modal fade" id="vaciar_carrito_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Vaciar carrito de compras</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que desea vaciar su carrito de compras?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="vaciar_carrito_btn">Vaciar Carrito</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+
+        $( document ).ready(function() {
+
+            $(".btn-product").click(function() {
+                carro.AgregarProducto($(this).attr('id'), $(this).text(), $(this).attr('precio'));
+                $("#cart").text(carro.productos_count);
+            });
+
+
+            $("#ver_carrito").click(function(){
+                if(carro.productos_count == 0) {
+                    $("#ver_carrito_modal_body").text("Su carrito de compras está vacío");
+                    $("#enviar_carrito_btn").attr("href", "#");
+                }
+                else{
+                    $("#ver_carrito_modal_body").html(carro.MostrarContenido());
+                    //var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491122369670&text=";
+                    var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491161067766&text=";
+                    whatsapp_url += carro.GenerarMensaje();
+                    $("#enviar_carrito_btn").attr("href", whatsapp_url);
+                }
+
+            });
+
+            $("#vaciar_carrito_btn").click(function(){
+                carro.VaciarCarrito();
+                $("#cart").text(carro.productos_count);
+            })
+            
+        });
+
+
+
+
+    </script>
     
 </body>
 </html>
