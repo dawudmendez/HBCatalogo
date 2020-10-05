@@ -36,7 +36,6 @@ if($num>0){
             "descripcion" => $descripcion,
             "imagen" => $imagen,
             "orden" => $orden,
-            "visible" => $visible
         );
   
         array_push($paginas_arr, $paginas_item);
@@ -54,6 +53,7 @@ if($num>0){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
+                        <?php require_once("alerts.php"); ?>
                         <h1 class="mt-4">Páginas</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Páginas</li>
@@ -62,7 +62,9 @@ if($num>0){
                         <div class="card mb-4">
                             <div class="card-header d-flex w-100 justify-content-between mb2">                                
                                 <div class="p-2"><i class="fas fa-book-open"></i> Páginas del Catálogo</div>
-                                <div><a class="btn btn-primary" href="paginas_crear.php" role="button">Crear Página</a></div>                                
+                                <div>
+                                    <a class="btn btn-primary" href="pagina_controlador.php?accion=crear" role="button">Crear Página</a>
+                                </div>                              
                             </div>
                             <div class="card-body">
                                 <?php
@@ -72,7 +74,8 @@ if($num>0){
                                     <?php
                                     foreach ($paginas_arr as $pag){
                                     ?>                                        
-                                        <a href="paginas_ver.php?id=<?php echo $pag["id"]; ?>" class="list-group-item list-group-item-action <?php echo ($pag["orden"]==1 ? "active": ""); ?>">
+                                        <!-- <a href="pagina_controlador.php?accion=ver&id=<?php echo $pag["id"]; ?>" class="list-group-item list-group-item-action <?php echo ($pag["orden"]==1 ? "active": ""); ?>"> -->
+                                        <a href="pagina_controlador.php?accion=ver&id=<?php echo $pag["id"]; ?>" class="list-group-item list-group-item-action">
                                         <!-- <div class="list-group-item list-group-item-action <?php //echo ($pag["orden"]==1 ? "bg-light": ""); ?>"> -->
                                             <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-1">
@@ -82,7 +85,7 @@ if($num>0){
                                             </div>
                                             <p class="mb-1"><?php echo $pag["descripcion"]; ?></p>
                                             <div class="d-flex justify-content-end">
-                                                <span class="badge <?php echo ($pag["orden"]==1 ? "badge-light": "badge-primary"); ?> badge-pill"><?php echo $pag["orden"]; ?></span>
+                                                <span class="badge badge-primary badge-pill"><?php echo $pag["orden"]; ?></span>
                                             </div>
                                             <div class="">
                                             <!-- <a href="paginas_ver.php?id=<?php //echo $pag["id"]; ?>" class="btn btn-primary">Ver</a> 

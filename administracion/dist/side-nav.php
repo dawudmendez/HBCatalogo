@@ -3,19 +3,23 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Catalogo</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="configuracion_controlador.php?accion=ver">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Configuración
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="usuario_controlador.php?accion=ver_todas">
                     <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
                     Usuarios
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="vendedor_controlador.php?accion=ver_todas">
                     <div class="sb-nav-link-icon"><i class="fas fa-hand-holding-usd"></i></div>
                     Vendedores
                 </a>
-                <div class="sb-sidenav-menu-heading">Páginas</div>
+                <a class="nav-link" href="pagina_controlador.php?accion=ver_todas">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Páginas
+                </a>
+                <!-- <div class="sb-sidenav-menu-heading">Páginas</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePaginas" aria-expanded="false" aria-controls="collapsePaginas">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Páginas
@@ -23,11 +27,14 @@
                 </a>
                 <div class="collapse" id="collapsePaginas" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="paginas.php">
-                            Ver
+                        <a class="nav-link collapsed" href="pagina_controlador.php?accion=ver_todas">
+                            Ver Todas
                         </a>
-                        <a class="nav-link collapsed" href="paginas_crear.php">
-                            Crear
+                        <a class="nav-link collapsed" href="pagina_controlador.php?accion=crear&tipo=portada">
+                            Crear Portada
+                        </a>
+                        <a class="nav-link collapsed" href="pagina_controlador.php?accion=crear">
+                            Crear Página
                         </a>
                     </nav>
                 </div>
@@ -35,7 +42,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Templates
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
+                </a> -->
                 <!-- <a class="nav-link" href="index.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Templates
@@ -54,7 +61,9 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Inició sesión como:</div>
-            Nombre y Apellido
+            <?php
+                echo $_SESSION['usu_nombre'] . " " . $_SESSION['usu_apellido'];
+            ?>
         </div>
     </nav>
 </div>

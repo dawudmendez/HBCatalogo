@@ -1,11 +1,8 @@
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Developed by: <a href="https://dawud.dev" target="_blank">Dawud.Dev</a></div>
+            <div class="text-muted">Copyleft &copy; <a href="https://dawud.com.ar" target="_blank">https://dawud.com.ar</a></div>
             <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
             </div>
         </div>
     </div>

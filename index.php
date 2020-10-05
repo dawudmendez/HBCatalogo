@@ -1,3 +1,87 @@
+<?php
+
+// files needed to connect to database
+include_once 'administracion/dist/config/base-datos.php';
+include_once 'administracion/dist/objetos/configuracion.php';
+include_once 'administracion/dist/objetos/vendedor.php';
+include_once 'administracion/dist/objetos/pagina.php';
+
+ 
+// instantiate database and product object
+$database = new BaseDatos();
+$db = $database->traerConexion();
+  
+// initialize object
+$conf = new Configuracion($db);
+$vend = new Vendedor($db);
+$pag = new Pagina($db);
+
+//Traigo la configuración
+$conf->traer();
+
+if(isset($_GET["vend"]) && $_GET["vend"] != "") {
+    if($vend->traerPorUsuario($_GET["vend"])) {
+        $whatsapp = $vend->whatsapp;
+    }
+    else {
+        $whatsapp = $conf->whatsapp;
+    }    
+}
+else {
+    $whatsapp = $conf->whatsapp;
+}
+  
+//Traigo las páginas
+$stmt = $pag->traer();
+$num = $stmt->rowCount();
+  
+// check if more than 0 record found
+if($num>0){  
+    // products array
+    $paginas_arr=array();
+    //$paginas_arr["records"]=array();
+  
+    // retrieve our table contents
+    // fetch() is faster than fetchAll()
+    // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        // extract row
+        // this will make $row['name'] to
+        // just $name only
+        extract($row);
+  
+        $paginas_item=array(
+            "id" => $id,
+            "nombre" => $nombre,
+            "descripcion" => $descripcion,
+            "imagen" => $imagen,
+            "cant_prod" => $cant_prod,
+            "orden" => $orden,
+            "prod_1_cod" => $prod_1_cod,
+            "prod_1_nom" => $prod_1_nom,
+            "prod_1_des" => $prod_1_des,
+            "prod_1_pre" => $prod_1_pre,
+            "prod_2_cod" => $prod_2_cod,
+            "prod_2_nom" => $prod_2_nom,
+            "prod_2_des" => $prod_2_des,
+            "prod_2_pre" => $prod_2_pre,
+            "prod_3_cod" => $prod_3_cod,
+            "prod_3_nom" => $prod_3_nom,
+            "prod_3_des" => $prod_3_des,
+            "prod_3_pre" => $prod_3_pre,
+            "prod_4_cod" => $prod_4_cod,
+            "prod_4_nom" => $prod_4_nom,
+            "prod_4_des" => $prod_4_des,
+            "prod_4_pre" => $prod_4_pre
+        );
+  
+        array_push($paginas_arr, $paginas_item);
+    }
+  
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +100,17 @@
     <script src="src/js/cart.js"></script>    
 
     <title>Home Basic - Catálogo</title>
-    <link rel="icon" type="image/png" href="src/img/logo/logo.png">
+    <link rel="icon" type="image/png" href="administracion/dist/<?php echo $_SESSION["logo"]; ?>">
 
 </head>
 <body>
 
     <div class="container-fluid px-0">
         <nav class="navbar navbar-expand-lg navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img id="logo" src="src/img/logo/logo.png"></a>
+            <a class="navbar-brand" href="#"><img id="logo" src="<?php echo "administracion/dist/" . $conf->logo; ?>"></a>
 
             <span class="navbar-text">
-                <i id="cart" class="fas fa-shopping-cart">0</i>                
+                <i id="cart" class="fas fa-shopping-cart"> 0</i>                
             </span>
             
             
@@ -54,98 +138,51 @@
                 <div class="carousel-item active">
                     <div class="row">
                         <div class="col img-div">
-                            <img src="src/img/catalogo1.jpg" class="d-block w-100 img" alt="...">
+                            <img src="<?php echo "administracion/dist/" . $conf->portada; ?>" class="d-block w-100 img" alt="...">
                         </div>
                     </div>                    
                 </div>
 
+                <?php
+                    if(isset($paginas_arr)){
+                        foreach ($paginas_arr as $pag){
+                ?>
                 <div class="carousel-item">
                     <div class="row">
-                        <!-- <div class="col img-div">
-                            <img src="src/img/catalogo2.jpg" class="float-right img" alt="...">
-                            <div class="dropdown carousel-caption">
-                                <button class="btn btn-danger dropdown-toggle btn-carrito" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>    
-                            </div>
-                        </div>
-                        <div class="col-sm-6 img-div">
-                            <img src="src/img/catalogo3.jpg" class="float-left img" alt="...">
-                            <div class="dropdown carousel-caption">
-                                <button class="btn btn-danger dropdown-toggle btn-carrito" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>    
-                            </div>
-                        </div> -->
+                        
                         <div class="col img-div">
-                            <img src="src/img/catalogo2.jpg" class="d-block w-100 img" alt="...">
-                            <div class="dropdown carousel-caption">
+                            <img src="<?php echo "administracion/dist/" . $pag["imagen"]; ?>" class="d-block w-100 img" alt="...">
+                            <div class="dropup carousel-caption">
+                                <?php
+                                if($pag["cant_prod"] == 2 || $pag["cant_prod"] == 4) {
+                                ?>                                
+                                
                                 <button class="btn btn-danger dropdown-toggle btn-carrito" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item btn-product" id="40940045" precio="199.99" href="#">Lunchera Toy Story</a>
-                                    <a class="dropdown-item btn-product" id="40940047" precio="169.99" href="#">Plato Playo Toy Story</a>
-                                    <a class="dropdown-item btn-product" id="40940046" precio="139.99" href="#">Taza Toy Story</a>
-                                    <a class="dropdown-item btn-product" id="40940048" precio="449.99" href="#">Vaso con sorbete Toy Story</a>
-                                </div>    
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_1_cod"]; ?>" precio="<?php echo $pag["prod_1_pre"]; ?>" nom="<?php echo $pag["prod_1_nom"]; ?>" desc="<?php echo $pag["prod_1_desc"]; ?>" href="#"><?php echo $pag["prod_1_nom"] . ": " . $pag["prod_1_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_2_cod"]; ?>" precio="<?php echo $pag["prod_2_pre"]; ?>" nom="<?php echo $pag["prod_2_nom"]; ?>" desc="<?php echo $pag["prod_2_desc"]; ?>" href="#"><?php echo $pag["prod_2_nom"] . ": " . $pag["prod_2_pre"]; ?></a>
+                                    <?php                                        
+                                    if($pag["cant_prod"] == 4) {
+                                    ?>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_3_cod"]; ?>" precio="<?php echo $pag["prod_3_pre"]; ?>" nom="<?php echo $pag["prod_3_nom"]; ?>" desc="<?php echo $pag["prod_3_desc"]; ?>" href="#"><?php echo $pag["prod_3_nom"] . ": " . $pag["prod_3_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_4_cod"]; ?>" precio="<?php echo $pag["prod_4_pre"]; ?>" nom="<?php echo $pag["prod_4_nom"]; ?>" desc="<?php echo $pag["prod_4_desc"]; ?>" href="#"><?php echo $pag["prod_4_nom"] . ": " . $pag["prod_4_pre"]; ?></a>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>  
+                                <?php
+                                }
+                                ?>  
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
-
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col img-div">
-                            <img src="src/img/catalogo3.jpg" class="d-block w-100 img" alt="...">
-                            <div class="dropdown carousel-caption">
-                                <button class="btn btn-danger dropdown-toggle btn-carrito" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item btn-product" id="5800200" precio="189.99" href="#">Jabón Líquido Infantil Toy Story x 150ml</a>
-                                    <a class="dropdown-item btn-product" id="5800201" precio="399.99" href="#">Perfume Infantil Toy Story x 50ml</a>
-                                    <a class="dropdown-item btn-product" id="5800203" precio="549.99" href="#">Shampoo 2 en 1 Toy Story x 400ml</a>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col img-div">
-                            <img src="src/img/catalogo4.jpg" class="d-block w-100 img" alt="...">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col img-div">
-                            <img src="src/img/catalogo5.jpg" class="d-block w-100 img" alt="...">
-                            <div class="dropdown carousel-caption">
-                                <button class="btn btn-danger dropdown-toggle btn-carrito" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item btn-product" id="5101007" precio="139.99" href="#">Colonia Para Bebés Manitos Arrorró x 108ml</a>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <?php
+                    }
+                }
+                ?>
                 
             </div>        
 
@@ -217,13 +254,13 @@
             </button>
             </div>
             <div class="modal-body">
-                <strong>Home Basic</strong></br>
-                <a href="http://www.homebasic.com.ar" target="_blank">http://www.homebasic.com.ar</a></br>
-                Pronto tendrás acceso a nuestra tienda online.</br>
+                <strong><?php echo $conf->empresa; ?></strong></br>
+                <a href="<?php echo $conf->url; ?>" target="_blank"><?php echo $conf->url; ?></a></br>
+                <?php echo $conf->mensaje; ?></br>
                 </br>
-                <strong>Comodoro Py 3195</strong></br>
-                <strong>Gregorio de Laferrere</strong></br>
-                <i class="fa fa-phone fa-flip-horizontal"></i> <strong>(011) 4457-6407</strong></br>
+                <strong><?php echo $conf->direccion; ?></strong></br>
+                <strong><?php echo $conf->localidad; ?></strong></br>
+                <i class="fa fa-phone fa-flip-horizontal"></i> <strong><?php echo $conf->telefono; ?></strong></br>
 
                 
             </div>
@@ -252,7 +289,8 @@
                 }
                 else{
                     $("#ver_carrito_modal_body").html(carro.MostrarContenido());
-                    var whatsapp_url = "https://api.whatsapp.com/send?phone=+5491126489063&text=";
+                    var whatsapp_number = <?php echo $whatsapp; ?>;
+                    var whatsapp_url = "https://api.whatsapp.com/send?phone=" + whatsapp_number + "&text=";
                     whatsapp_url += carro.GenerarMensaje();
                     $("#enviar_carrito_btn").attr("href", whatsapp_url);
                     $("#enviar_carrito_btn").show();

@@ -1,17 +1,19 @@
 <?php
 
-class Usuario {
+class Vendedor {
 
     // onexión a la base y nombre de tabla
     private $con;
-    private $nombre_tabla = "usuarios";
+    private $nombre_tabla = "vendedores";
 
     //propiedades del objeto
+    public $id;
     public $usuario;
     public $nombre;
     public $apellido;
-    public $password;
-    public $admin;
+    public $email;
+    public $whatsapp;
+    public $link;
 
     //constructor
     public function __construct($db){
@@ -20,7 +22,7 @@ class Usuario {
 
     public function traer() {
         //traigo todos
-        $query = "SELECT usuario, nombre, apellido, password, admin
+        $query = "SELECT id, usuario, nombre, apellido, email, whatsapp, link
                 FROM " . $this->nombre_tabla;
     
         //preparo la query
@@ -32,20 +34,20 @@ class Usuario {
         return $stmt;
     }
 
-    public function traerUno($usuario) {
+    public function traerUno($id) {
         //traigo por id
-        $query = "SELECT usuario, nombre, apellido, password, admin
+        $query = "SELECT id, usuario, nombre, apellido, email, whatsapp, link
                 FROM " . $this->nombre_tabla . "
-                WHERE usuario = ?";
+                WHERE id = ?";
     
         //preparo the query
         $stmt = $this->con->prepare($query);
     
         //sanitizo
-        $this->usuario=htmlspecialchars(strip_tags($usuario));
+        $this->id=htmlspecialchars(strip_tags($id));
     
         //bindeo el id
-        $stmt->bindParam(1, $this->usuario);
+        $stmt->bindParam(1, $this->id);
     
         //ejecuto el query
         $stmt->execute();
@@ -62,61 +64,14 @@ class Usuario {
                 // this will make $row['name'] to
                 // just $name only
                 extract($row);
-
-                $this->usuario = $usuario;
-                $this->nombre = $nombre;
-                $this->apellido = $apellido;
-                $this->password = $password;
-                $this->admin = $admin;
           
-            }
-
-            return true;
-
-        }
-        else {
-
-            return false;
-
-        }
-    }
-
-    public function login($usuario) {
-        //traigo por id
-        $query = "SELECT usuario, nombre, apellido, password, admin
-                FROM " . $this->nombre_tabla . "
-                WHERE usuario = ?";
-    
-        //preparo the query
-        $stmt = $this->con->prepare($query);
-    
-        //sanitizo
-        $this->usuario=htmlspecialchars(strip_tags($usuario));
-    
-        //bindeo el id
-        $stmt->bindParam(1, $this->usuario);
-    
-        //ejecuto el query
-        $stmt->execute();
-
-        // query products
-        $num = $stmt->rowCount();
-
-        if($num>0){  
-            // products array
-            $paginas_arr=array();
-
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                // extract row
-                // this will make $row['name'] to
-                // just $name only
-                extract($row);
-
+                $this->id = $id;
                 $this->usuario = $usuario;
                 $this->nombre = $nombre;
                 $this->apellido = $apellido;
-                $this->password = $password;
-                $this->admin = $admin;
+                $this->email = $email;
+                $this->whatsapp = $whatsapp;
+                $this->link = $link;
           
             }
 
@@ -159,6 +114,57 @@ class Usuario {
         }
     }
 
+    public function traerPorUsuario($usuario) {
+        //traigo por id
+        $query = "SELECT id, usuario, nombre, apellido, email, whatsapp, link
+                FROM " . $this->nombre_tabla . "
+                WHERE usuario = ?";
+    
+        //preparo the query
+        $stmt = $this->con->prepare($query);
+    
+        //sanitizo
+        $this->usuario=htmlspecialchars(strip_tags($usuario));
+    
+        //bindeo el id
+        $stmt->bindParam(1, $this->usuario);
+    
+        //ejecuto el query
+        $stmt->execute();
+
+        // query products
+        $num = $stmt->rowCount();
+
+        if($num>0){  
+            // products array
+            $paginas_arr=array();
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                // extract row
+                // this will make $row['name'] to
+                // just $name only
+                extract($row);
+          
+                $this->id = $id;
+                $this->usuario = $usuario;
+                $this->nombre = $nombre;
+                $this->apellido = $apellido;
+                $this->email = $email;
+                $this->whatsapp = $whatsapp;
+                $this->link = $link;
+          
+            }
+
+            return true;
+
+        }
+        else {
+
+            return false;
+
+        }
+    }
+
     public function crear() {
         //insertar página
         $query = "INSERT INTO " . $this->nombre_tabla . "
@@ -166,8 +172,9 @@ class Usuario {
             usuario = :usuario,
             nombre = :nombre,
             apellido = :apellido,
-            password = :password,
-            admin = :admin
+            email = :email,
+            whatsapp = :whatsapp,
+            link = :link
             ";
 
         //preparo la query
@@ -177,15 +184,17 @@ class Usuario {
         $this->usuario=htmlspecialchars(strip_tags($this->usuario));
         $this->nombre=htmlspecialchars(strip_tags($this->nombre));
         $this->apellido=htmlspecialchars(strip_tags($this->apellido));
-        $this->password=htmlspecialchars(strip_tags($this->password));
-        $this->admin=htmlspecialchars(strip_tags($this->admin));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->whatsapp=htmlspecialchars(strip_tags($this->whatsapp));
+        $this->link=htmlspecialchars(strip_tags($this->link));
 
         //bindeo los parámetros
         $stmt->bindParam(':usuario', $this->usuario);
         $stmt->bindParam(':nombre', $this->nombre);
         $stmt->bindParam(':apellido', $this->apellido);
-        $stmt->bindParam(':password', $this->password);
-        $stmt->bindParam(':admin', $this->admin);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':whatsapp', $this->whatsapp);
+        $stmt->bindParam(':link', $this->link);
 
         //ejecuto el query y devuelvo true si salió todo bien
         if($stmt->execute()){
@@ -202,28 +211,34 @@ class Usuario {
         //insertar página
         $query = "UPDATE " . $this->nombre_tabla . "
         SET
+            usuario = :usuario,
             nombre = :nombre,
             apellido = :apellido,
-            password = :password,
-            admin = :admin
-            WHERE usuario = :usuario";
+            email = :email,
+            link = :link,
+            whatsapp = :whatsapp
+            WHERE id = :id";
 
         //preparo la query
         $stmt = $this->con->prepare($query);
 
         //le saco los tags, etc
+        $this->id=htmlspecialchars(strip_tags($this->id));
         $this->usuario=htmlspecialchars(strip_tags($this->usuario));
         $this->nombre=htmlspecialchars(strip_tags($this->nombre));
         $this->apellido=htmlspecialchars(strip_tags($this->apellido));
-        $this->password=htmlspecialchars(strip_tags($this->password));
-        $this->admin=htmlspecialchars(strip_tags($this->admin));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->whatsapp=htmlspecialchars(strip_tags($this->whatsapp));
+        $this->link=htmlspecialchars(strip_tags($this->link));
 
         //bindeo los parámetros
+        $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':usuario', $this->usuario);
         $stmt->bindParam(':nombre', $this->nombre);
         $stmt->bindParam(':apellido', $this->apellido);
-        $stmt->bindParam(':password', $this->password);
-        $stmt->bindParam(':admin', $this->admin);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':whatsapp', $this->whatsapp);
+        $stmt->bindParam(':link', $this->link);
 
         //ejecuto el query y devuelvo true si salió todo bien
         if($stmt->execute()){
@@ -236,19 +251,19 @@ class Usuario {
         return false;
     }
 
-    public function eliminar($usuario) {
+    public function eliminar($id) {
         //Query para borrar el registro
         $query = "DELETE from " . $this->nombre_tabla . "            
-                WHERE usuario = ?";
+                WHERE id = ?";
 
         //Preparo la query
         $stmt = $this->con->prepare($query);
 
         //Sanitizo (se sacan caracteres especiales)
-        $this->usuario=htmlspecialchars(strip_tags($usuario));
+        $this->id=htmlspecialchars(strip_tags($id));
 
         //Bindeo - o mapeo - el id
-        $stmt->bindParam(1, $this->usuario);
+        $stmt->bindParam(1, $this->id);
 
         //Ejecuto el query
         if($stmt->execute()) {
