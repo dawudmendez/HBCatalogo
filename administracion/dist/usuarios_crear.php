@@ -131,6 +131,8 @@
 
                     limpiarErrores()
 
+                    let validado = true; 
+
                     if(!usuarioDisponible) {
                         $("#usuario_error").text("El usuario no está disponible");
                         $("#usuario_error").show();
@@ -192,7 +194,8 @@
                         $("#apellido_error").show();
                         validado = false;
                     }
-
+                    
+                    return validado;
                 }
 
                 function limpiarErrores() {

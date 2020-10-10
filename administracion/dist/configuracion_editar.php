@@ -96,12 +96,12 @@ if(!$conf->traer()) {
                                     </div>
                                     <div class="form-group" id="input_imagen_propia">
                                         <label for="portada">Portada</label>
-                                        <input type="file" class="form-control-file" id="portada" name="portada" aria-describedby="portada_error"/>
+                                        <input type="file" class="form-control-file" id="portada" name="portada" aria-describedby="portada_error" accept="image/*"/>
                                         <small id="portada_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-group" id="input_imagen_propia">
                                         <label for="logo">Logo</label>
-                                        <input type="file" class="form-control-file" id="logo" name="logo" aria-describedby="logo_error"/>
+                                        <input type="file" class="form-control-file" id="logo" name="logo" aria-describedby="logo_error"accept="image/*/>
                                         <small id="logo_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-group">
