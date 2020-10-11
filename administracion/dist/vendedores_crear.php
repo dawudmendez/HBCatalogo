@@ -198,8 +198,8 @@
                         validado = false;
                     }
 
-                    if($("#whatsapp").val().indexOf('+', 0) == -1 || $("#whatsapp").val().indexOf('9', 0) == -1 ) {
-                        $("#whatsapp_error").text("Ingrese un número válido");
+                    if($("#whatsapp").val().substring(0,7) != "+54" && $("#whatsapp").val().substring(0,8) != "9") {
+                        $("#whatsapp_error").text("Ingrese un número válido, con formato: +549");
                         $("#whatsapp_error").show();
                         validado = false;
                     }

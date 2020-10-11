@@ -62,7 +62,7 @@ $maxorden = $pag->traerMaxOrden();
                                     </div>
                                     <div class="form-group" id="input_imagen_propia">
                                         <label for="pag_imagen">Imagen</label>
-                                        <input type="file" class="form-control-file" id="pag_imagen" name="pag_imagen"/>
+                                        <input type="file" class="form-control-file" id="pag_imagen" name="pag_imagen" accept="image/*"/>
                                         <small id="pag_imagen_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-check">

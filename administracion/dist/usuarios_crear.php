@@ -56,12 +56,12 @@
                                     </div>        
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" aria-describedby="nombre_error">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" aria-describedby="nombre_error"  placeholder="Su nombre"required pattern="[A-Za-z]+" >
                                         <small id="nombre_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="apellido">Apellido</label>
-                                        <input type="text" class="form-control" id="apellido" name="apellido" maxlength="50" aria-describedby="apellido_error">
+                                        <input type="text" class="form-control" id="apellido" name="apellido" maxlength="50" aria-describedby="apellido_error" placeholder="Su apellido" required pattern="[A-Za-z]+">
                                         <small id="apellido_error" class="form-text text-danger input_error"></small>
                                     </div>                                    
                                     

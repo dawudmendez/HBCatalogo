@@ -13,6 +13,7 @@ class Pagina {
     public $imagen;
     public $cant_prod;
     public $orden;
+    public $viejo_orden;
     public $prod_1_cod;
     public $prod_1_nom;
     public $prod_1_des;
@@ -212,6 +213,7 @@ class Pagina {
                 $this->imagen = $imagen;
                 $this->cant_prod = $cant_prod;
                 $this->orden = $orden;
+                $this->viejo_orden = $orden;
                 $this->prod_1_cod = $prod_1_cod;
                 $this->prod_1_nom = $prod_1_nom;
                 $this->prod_1_des = $prod_1_des;
@@ -243,7 +245,7 @@ class Pagina {
     }
 
     function traerMaxOrden() {
-        //traigo por id
+        
         $query = "SELECT max(orden) as orden
                 FROM " . $this->nombre_tabla . "";
 
@@ -357,7 +359,7 @@ class Pagina {
         $stmt->bindParam(':prod_4_pre', $this->prod_4_pre);
 
         //Actualizo el orden primero
-        if(!$this->subirOrden()) {
+        if(!$this->reordenar()) {
             return false;
         }
 
@@ -410,6 +412,60 @@ class Pagina {
             // print_r($stmt->errorInfo());
             return false;
         }
+    }
+
+    private function reordenar() {
+
+        if($this->orden > $this->viejo_orden) {            
+            $query = "UPDATE " . $this->nombre_tabla . "
+            SET orden = orden - 1               
+            WHERE orden <= ? AND orden > ?";
+
+            //preparo the query
+            $stmt = $this->con->prepare($query);
+
+            //sanitizo
+            $this->orden=htmlspecialchars(strip_tags($this->orden));
+            $this->viejo_orden=htmlspecialchars(strip_tags($this->viejo_orden));
+
+            //bindeo el id
+            $stmt->bindParam(1, $this->orden);
+            $stmt->bindParam(2, $this->viejo_orden);
+
+            //ejecuto el query
+            if(!$stmt->execute()) {
+                print_r($stmt->errorInfo());
+                return false;
+            }
+        }
+        elseif($this->orden < $this->viejo_orden)
+        {
+            $query = "UPDATE " . $this->nombre_tabla . "
+            SET orden = orden + 1               
+            WHERE orden >= ? AND orden < ?";
+
+            //preparo the query
+            $stmt = $this->con->prepare($query);
+
+            //sanitizo
+            $this->orden=htmlspecialchars(strip_tags($this->orden));
+            $this->viejo_orden=htmlspecialchars(strip_tags($this->viejo_orden));
+
+            //bindeo el id
+            $stmt->bindParam(1, $this->orden);
+            $stmt->bindParam(2, $this->viejo_orden);
+
+            //ejecuto el query
+            if(!$stmt->execute()) {
+                print_r($stmt->errorInfo());
+                return false;
+            }
+
+        }
+        
+        return true;
+        
+
     }
 
     //Functiones internas

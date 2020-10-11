@@ -65,17 +65,17 @@ $maxorden = $pag->traerMaxOrden();
                                     <input type='hidden' name='id' value='<?php echo $pag->id; ?>'>                         
                                     <div class="form-group">
                                         <label for="pag_nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="pag_nombre" name="pag_nombre" maxlength="50" placeholder="Ingrese un nombre que identifique a la página">
+                                        <input type="text" class="form-control" id="pag_nombre" name="pag_nombre" maxlength="50" value="<?php echo $pag->nombre ?>">
                                         <small id="pag_nombre_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="pag_descripcion">Descripción</label>
-                                        <input type="text" class="form-control" id="pag_descripcion" name="pag_descripcion" maxlength="150" placeholder="Ingrese una descripción para la página">
+                                        <input type="text" class="form-control" id="pag_descripcion" name="pag_descripcion" maxlength="150" value="<?php echo $pag->descripcion ?>">
                                         <small id="pag_descripcion_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-group" id="input_imagen_propia">
                                         <label for="pag_imagen">Imagen</label>
-                                        <input type="file" class="form-control-file" id="pag_imagen" name="pag_imagen"/>
+                                        <input type="file" class="form-control-file" id="pag_imagen" name="pag_imagen" accept="image/*"/>
                                         <small id="pag_imagen_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <div class="form-check">
@@ -93,7 +93,7 @@ $maxorden = $pag->traerMaxOrden();
                                     </br>
                                     <div class="form-group">
                                         <label for="pag_orden">Orden</label>
-                                        <input type="number" class="form-control" id="pag_orden" name="pag_orden" min=1 max=<?php echo ($maxorden + 1); ?> value=<?php echo ($pag->orden); ?>>
+                                        <input type="number" class="form-control" id="pag_orden" name="pag_orden" min=1 max=<?php echo $maxorden; ?> value=<?php echo ($pag->orden); ?>>
                                         <small id="pag_orden_error" class="form-text text-danger input_error"></small>
                                     </div>
                                     <!-- <div class="form-group form-check">
@@ -118,22 +118,22 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 1</h5>
                                                 <div class="form-group">
                                                     <label for="prod_1_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_1_cod" name="prod_1_cod" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_1_cod" name="prod_1_cod" maxlength="20" value="<?php echo $pag->prod_1_cod ?>">
                                                     <small id="prod_1_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_1_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_1_nom" name="prod_1_nom" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_1_nom" name="prod_1_nom" maxlength="20" value="<?php echo $pag->prod_1_nom ?>">
                                                     <small id="prod_1_nom_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_1_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_1_desc" name="prod_1_desc" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_1_desc" name="prod_1_desc" maxlength="20" value="<?php echo $pag->prod_1_des ?>">
                                                     <small id="prod_1_desc_error" class="form-text text-danger input_error"></small>
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_1_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_1_pre" name="prod_1_pre" maxlength="20" pattern="^\d*(\.\d{0,2})?$">
+                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_1_pre" name="prod_1_pre" maxlength="20" pattern="^\d*(\.\d{0,2})?$" value="<?php echo $pag->prod_1_pre ?>">
                                                     <small id="prod_1_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -145,22 +145,22 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 2</h5>
                                                 <div class="form-group">
                                                     <label for="prod_2_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_2_cod" name="prod_2_cod" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_2_cod" name="prod_2_cod" maxlength="20" value="<?php echo $pag->prod_2_cod ?>">
                                                     <small id="prod_2_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_2_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_2_nom" name="prod_2_nom" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_2_nom" name="prod_2_nom" maxlength="20" value="<?php echo $pag->prod_2_nom ?>">
                                                     <small id="prod_2_nom_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_2_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_2_desc" name="prod_2_desc" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_2_desc" name="prod_2_desc" maxlength="20" value="<?php echo $pag->prod_2_des ?>">
                                                     <small id="prod_2_desc_error" class="form-text text-danger input_error"></small>
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_2_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_2_pre" name="prod_2_pre">
+                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_2_pre" name="prod_2_pre" value="<?php echo $pag->prod_2_pre ?>">
                                                     <small id="prod_2_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -175,22 +175,22 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 3</h5>
                                                 <div class="form-group">
                                                     <label for="prod_3_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_3cod" name="prod_3_cod" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_3cod" name="prod_3_cod" maxlength="20" value="<?php echo $pag->prod_3_cod ?>">
                                                     <small id="prod_3_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_3_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_3_nom" name="prod_3_nom" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_3_nom" name="prod_3_nom" maxlength="20" value="<?php echo $pag->prod_3_nom ?>">
                                                     <small id="prod_3_nom_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_3_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_3_desc" name="prod_3_desc" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_3_desc" name="prod_3_desc" maxlength="20" value="<?php echo $pag->prod_3_des ?>">
                                                     <small id="prod_3_desc_error" class="form-text text-danger input_error"></small>
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_3_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_3_pre" name="prod_3_pre">
+                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_3_pre" name="prod_3_pre" value="<?php echo $pag->prod_3_pre ?>">
                                                     <small id="prod_3_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -202,22 +202,22 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 4</h5>
                                                 <div class="form-group">
                                                     <label for="prod_4_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_4_cod" name="prod_4_cod" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_4_cod" name="prod_4_cod" maxlength="20" value="<?php echo $pag->prod_4_cod ?>">
                                                     <small id="prod_4_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_4_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_4_nom" name="prod_4_nom" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_4_nom" name="prod_4_nom" maxlength="20" value="<?php echo $pag->prod_4_nom ?>">
                                                     <small id="prod_4_nom_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prod_4_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_4_desc" name="prod_4_desc" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_4_desc" name="prod_4_desc" maxlength="20" value="<?php echo $pag->prod_4_des ?>">
                                                     <small id="prod_4_desc_error" class="form-text text-danger input_error"></small>
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_4_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_4_pre" name="prod_4_pre">
+                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_4_pre" name="prod_4_pre" value="<?php echo $pag->prod_4_pre ?>">
                                                     <small id="prod_4_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -289,8 +289,8 @@ $maxorden = $pag->traerMaxOrden();
                         validado = false;
                     }
 
-                    if($("#pag_orden").val() > <?php echo ($maxorden + 1); ?>) {
-                        $("#pag_orden_error").text("No debe ser mayor a <?php echo ($maxorden + 1); ?>");
+                    if($("#pag_orden").val() > <?php echo $maxorden; ?>) {
+                        $("#pag_orden_error").text("No debe ser mayor a <?php echo $maxorden; ?>");
                         $("#pag_orden_error").show();
                         validado = false;
                     }
