@@ -1,3 +1,4 @@
+<?php require_once("session.php"); ?>
 <?php require_once("head.php"); ?>
 <?php
 
@@ -159,7 +160,6 @@ if(!$usu->traerUno($_SESSION["usu_usuario"])) {
 
                 $("#btn_submit").click(function(){
                     if(validarUsuario()) {
-                        alert("Entra");
                         $("#form_usu").submit()
                     }
 

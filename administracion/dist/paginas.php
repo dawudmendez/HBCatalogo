@@ -1,3 +1,5 @@
+<?php require_once("session.php"); ?>
+<?php require_once("head.php"); ?>
 <?php
  
 // files needed to connect to database
@@ -44,8 +46,6 @@ if($num>0){
 }
 
 ?>
-
-<?php require_once("head.php"); ?>
     <body class="sb-nav-fixed">
         <?php require_once("top-nav.php"); ?>
         <div id="layoutSidenav">

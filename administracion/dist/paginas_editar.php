@@ -1,3 +1,5 @@
+<?php require_once("session.php"); ?>
+<?php require_once("head.php"); ?>
 <?php
 
 if(!isset($_GET["id"])) {
@@ -23,8 +25,6 @@ if(!$pag->traerUno($_GET["id"])) {
 $maxorden = $pag->traerMaxOrden();
 
 ?>
-
-<?php require_once("head.php"); ?>
 <?php
 //$_SESSION["message"] = "Algo";  
 ?>
@@ -133,7 +133,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_1_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_1_pre" name="prod_1_pre" maxlength="20" pattern="^\d*(\.\d{0,2})?$" value="<?php echo $pag->prod_1_pre ?>">
+                                                    <input type="number" min="0.00" step="0.01" class="form-control input_decimal" id="prod_1_pre" name="prod_1_pre" maxlength="20" pattern="^\d*(\.\d{0,2})?$" value="<?php echo $pag->prod_1_pre ?>">
                                                     <small id="prod_1_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -160,7 +160,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_2_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_2_pre" name="prod_2_pre" value="<?php echo $pag->prod_2_pre ?>">
+                                                    <input type="number" min="0.00" step="0.01" class="form-control input_decimal" id="prod_2_pre" name="prod_2_pre" value="<?php echo $pag->prod_2_pre ?>">
                                                     <small id="prod_2_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -175,7 +175,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 3</h5>
                                                 <div class="form-group">
                                                     <label for="prod_3_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_3cod" name="prod_3_cod" maxlength="20" value="<?php echo $pag->prod_3_cod ?>">
+                                                    <input type="text" class="form-control" id="prod_3_cod" name="prod_3_cod" maxlength="20" value="<?php echo $pag->prod_3_cod ?>">
                                                     <small id="prod_3_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">
@@ -190,7 +190,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_3_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_3_pre" name="prod_3_pre" value="<?php echo $pag->prod_3_pre ?>">
+                                                    <input type="number" min="0.00" step="0.01" class="form-control input_decimal" id="prod_3_pre" name="prod_3_pre" value="<?php echo $pag->prod_3_pre ?>">
                                                     <small id="prod_3_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>
@@ -217,7 +217,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 </div> 
                                                 <div class="form-group">
                                                     <label for="prod_4_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_4_pre" name="prod_4_pre" value="<?php echo $pag->prod_4_pre ?>">
+                                                    <input type="number" min="0.00" step="0.01" class="form-control input_decimal" id="prod_4_pre" name="prod_4_pre" value="<?php echo $pag->prod_4_pre ?>">
                                                     <small id="prod_4_pre_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                             </div>

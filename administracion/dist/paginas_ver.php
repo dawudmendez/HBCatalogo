@@ -1,3 +1,5 @@
+<?php require_once("session.php"); ?>
+<?php require_once("head.php"); ?>
 <?php
 
 if(!isset($_GET["id"])) {
@@ -22,55 +24,9 @@ $pag = new Pagina($db);
 if(!$pag->traerUno($_GET["id"])) {
     header('Location: index.php');
 }
-  
-// check if more than 0 record found
-// if($num>0){  
-//     // products array
-//     $paginas_arr=array();
-//     //$paginas_arr["records"]=array();
-  
-//     // retrieve our table contents
-//     // fetch() is faster than fetchAll()
-//     // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
-//     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-//         // extract row
-//         // this will make $row['name'] to
-//         // just $name only
-//         extract($row);
-  
-//         $paginas_item=array(
-//             "id" => $id,
-//             "nombre" => $nombre,
-//             "descripcion" => $descripcion,
-//             "imagen" => $imagen,
-//             "cant_prod" => $cant_prod,
-//             "orden" => $orden,
-//             "visible" => $visible,
-//             "prod_1_cod" => $prod_1_cod,
-//             "prod_1_nom" => $prod_1_nom,
-//             "prod_1_des" => $prod_1_des,
-//             "prod_1_pre" => $prod_1_pre,
-//             "prod_2_cod" => $prod_2_cod,
-//             "prod_2_nom" => $prod_2_nom,
-//             "prod_2_des" => $prod_2_des,
-//             "prod_2_pre" => $prod_2_pre,
-//             "prod_3_cod" => $prod_3_cod,
-//             "prod_3_nom" => $prod_3_nom,
-//             "prod_3_des" => $prod_3_des,
-//             "prod_3_pre" => $prod_3_pre,
-//             "prod_4_cod" => $prod_4_cod,
-//             "prod_4_nom" => $prod_4_nom,
-//             "prod_4_des" => $prod_4_des,
-//             "prod_4_pre" => $prod_4_pre
-//         );
-  
-//         array_push($paginas_arr, $paginas_item);
-//     }
-  
-// }
 
 ?>
-<?php require_once("head.php"); ?>
+
     <body class="sb-nav-fixed">
         <?php require_once("top-nav.php"); ?>
         <div id="layoutSidenav">

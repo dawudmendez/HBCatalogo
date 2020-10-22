@@ -1,3 +1,4 @@
+<?php require_once("session.php"); ?>
 <?php require_once("head.php"); ?>
 <?php
 
@@ -162,7 +163,7 @@ $maxorden = $pag->traerMaxOrden();
                                                 <h5 class="card-title">Producto 3</h5>
                                                 <div class="form-group">
                                                     <label for="prod_3_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_3cod" name="prod_3_cod" maxlength="20">
+                                                    <input type="text" class="form-control" id="prod_3_cod" name="prod_3_cod" maxlength="20">
                                                     <small id="prod_3_cod_error" class="form-text text-danger input_error"></small>
                                                 </div>
                                                 <div class="form-group">

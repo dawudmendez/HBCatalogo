@@ -1,3 +1,6 @@
+<?php require_once("session.php"); ?>
+<?php require_once("acceso_admin.php"); ?>
+<?php require_once("head.php"); ?>
 <?php
 
 if(!isset($_GET["id"])) {
@@ -25,7 +28,7 @@ if(!$vend->traerUno($_GET["id"])) {
   
 
 ?>
-<?php require_once("head.php"); ?>
+
     <body class="sb-nav-fixed">
         <?php require_once("top-nav.php"); ?>
         <div id="layoutSidenav">
@@ -66,7 +69,7 @@ if(!$vend->traerUno($_GET["id"])) {
                                                     <p class="mb-1"><strong>Apellido: </strong><?php echo $vend->apellido; ?></p>
                                                     <p class="mb-1"><strong>Email: </strong><?php echo $vend->email; ?></p>
                                                     <p class="mb-1"><strong>Whatsapp: </strong><?php echo $vend->whatsapp; ?></p>
-                                                    <p class="mb-1"><strong>Link: </strong><?php echo $vend->link; ?></p>
+                                                    <p class="mb-1"><strong>Link: </strong><a href="<?php echo $vend->link; ?>" target="_blank"><?php echo $vend->link; ?></a></p>
                                                     </br>                                                                                                   
                                                 </div>
                                             </div>

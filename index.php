@@ -100,7 +100,7 @@ if($num>0){
     <script src="src/js/cart.js"></script>    
 
     <title>Home Basic - Catálogo</title>
-    <link rel="icon" type="image/png" href="administracion/dist/<?php echo $_SESSION["logo"]; ?>">
+    <link rel="icon" type="image/png" href="<?php echo "administracion/dist/" . $conf->logo; ?>">
 
 </head>
 <body>
@@ -161,13 +161,13 @@ if($num>0){
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_1_cod"]; ?>" precio="<?php echo $pag["prod_1_pre"]; ?>" nom="<?php echo $pag["prod_1_nom"]; ?>" desc="<?php echo $pag["prod_1_desc"]; ?>" href="#"><?php echo $pag["prod_1_nom"] . ": " . $pag["prod_1_pre"]; ?></a>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_2_cod"]; ?>" precio="<?php echo $pag["prod_2_pre"]; ?>" nom="<?php echo $pag["prod_2_nom"]; ?>" desc="<?php echo $pag["prod_2_desc"]; ?>" href="#"><?php echo $pag["prod_2_nom"] . ": " . $pag["prod_2_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_1_cod"]; ?>" precio="<?php echo $pag["prod_1_pre"]; ?>" nom="<?php echo $pag["prod_1_nom"]; ?>" desc="<?php echo $pag["prod_1_desc"]; ?>" href="#"><?php echo $pag["prod_1_nom"] . ": $" . $pag["prod_1_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_2_cod"]; ?>" precio="<?php echo $pag["prod_2_pre"]; ?>" nom="<?php echo $pag["prod_2_nom"]; ?>" desc="<?php echo $pag["prod_2_desc"]; ?>" href="#"><?php echo $pag["prod_2_nom"] . ": $" . $pag["prod_2_pre"]; ?></a>
                                     <?php                                        
                                     if($pag["cant_prod"] == 4) {
                                     ?>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_3_cod"]; ?>" precio="<?php echo $pag["prod_3_pre"]; ?>" nom="<?php echo $pag["prod_3_nom"]; ?>" desc="<?php echo $pag["prod_3_desc"]; ?>" href="#"><?php echo $pag["prod_3_nom"] . ": " . $pag["prod_3_pre"]; ?></a>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_4_cod"]; ?>" precio="<?php echo $pag["prod_4_pre"]; ?>" nom="<?php echo $pag["prod_4_nom"]; ?>" desc="<?php echo $pag["prod_4_desc"]; ?>" href="#"><?php echo $pag["prod_4_nom"] . ": " . $pag["prod_4_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_3_cod"]; ?>" precio="<?php echo $pag["prod_3_pre"]; ?>" nom="<?php echo $pag["prod_3_nom"]; ?>" desc="<?php echo $pag["prod_3_desc"]; ?>" href="#"><?php echo $pag["prod_3_nom"] . ": $" . $pag["prod_3_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_4_cod"]; ?>" precio="<?php echo $pag["prod_4_pre"]; ?>" nom="<?php echo $pag["prod_4_nom"]; ?>" desc="<?php echo $pag["prod_4_desc"]; ?>" href="#"><?php echo $pag["prod_4_nom"] . ": $" . $pag["prod_4_pre"]; ?></a>
                                     <?php
                                     }
                                     ?>
@@ -276,7 +276,7 @@ if($num>0){
         $( document ).ready(function() {
 
             $(".btn-product").click(function() {
-                carro.AgregarProducto($(this).attr('id'), $(this).text(), $(this).attr('precio'));
+                carro.AgregarProducto($(this).attr('id'), $(this).attr('nom'), $(this).attr('precio'));
                 $("#cart").text(carro.productos_count);
             });
 

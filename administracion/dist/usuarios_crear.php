@@ -1,3 +1,5 @@
+<?php require_once("session.php"); ?>
+<?php require_once("acceso_admin.php"); ?>
 <?php require_once("head.php"); ?>
 <?php
 //$_SESSION["message"] = "Algo";  

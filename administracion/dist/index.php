@@ -1,3 +1,4 @@
+<?php require_once("session.php"); ?>
 <?php require_once("head.php"); ?>
 <body class="sb-nav-fixed">
     <?php include_once("top-nav.php"); ?>

@@ -1,3 +1,6 @@
+<?php require_once("session.php"); ?>
+<?php require_once("acceso_admin.php"); ?>
+<?php require_once("head.php"); ?>
 <?php
 
 // files needed to connect to database
@@ -20,8 +23,6 @@ if(!$conf->traer()) {
 }
 
 ?>
-
-<?php require_once("head.php"); ?>
 <?php
 //$_SESSION["message"] = "Algo";  
 ?>
@@ -231,9 +232,15 @@ if(!$conf->traer()) {
                         validado = false;
                     }
 
-                    let phoneno = new RegExp('^\\+?([0-9]{1,14})$');
+                    let phoneno = new RegExp('^\\+?([0-9]{1,15})$');
                     if(!phoneno.test($("#whatsapp").val())) {
                         $("#whatsapp_error").text("Ingrese un número válido");
+                        $("#whatsapp_error").show();
+                        validado = false;
+                    }
+
+                    if($("#whatsapp").val().substring(0,4) != "+549") {
+                        $("#whatsapp_error").text("Ingrese un número válido, con formato: +549");
                         $("#whatsapp_error").show();
                         validado = false;
                     }

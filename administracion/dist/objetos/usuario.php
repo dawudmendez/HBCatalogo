@@ -15,7 +15,14 @@ class Usuario {
 
     //constructor
     public function __construct($db){
-        $this->con = $db;
+        $this->con = $db;   
+        $this->changeMode();     
+    }
+
+    function changeMode() {
+        $query = "SET SESSION sql_mode = ''";
+        $stmt = $this->con->prepare($query);
+        $stmt->execute();
     }
 
     public function traer() {
