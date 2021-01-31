@@ -103,7 +103,7 @@ if($num>0){
     <script src="src/js/cart.js"></script>  
 
     <!-- Buscar -->
-    <link rel="stylesheet" href="styleBuscar.css">
+    <link rel="stylesheet" href="src/styles/styleBuscar.css">
   
 
     <title>Home Basic - Catálogo</title>
