@@ -83,16 +83,13 @@ if($num>0){
 ?>
 
 <!DOCTYPE html>
-<html class="notranslate" translate="no">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.js" crossorigin="anonymous"></script>
-
 
     <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
     <script src="src/bootstrap/js/bootstrap.min.js"></script>
@@ -100,18 +97,13 @@ if($num>0){
     <link href="src/font-awesome/css/all.css" rel="stylesheet">
 
     <link rel="stylesheet" href="src/styles/styles.css">
-    <script src="src/js/cart.js"></script>  
-
-    <!-- Buscar -->
-    <link rel="stylesheet" href="styleBuscar.css">
-  
+    <script src="src/js/cart.js"></script>    
 
     <title>Home Basic - Catálogo</title>
     <link rel="icon" type="image/png" href="<?php echo "administracion/dist/" . $conf->logo; ?>">
 
 </head>
 <body>
-
 
     <div class="container-fluid px-0">
         <nav class="navbar navbar-expand-lg navbar navbar-light bg-light">
@@ -136,26 +128,12 @@ if($num>0){
                     <li class="nav-item">
                         <a class="nav-link" id="contacto" href="#" data-toggle="modal" data-target="#contacto_modal">Contacto</a>
                     </li>
-                </ul> 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="custom-search-input">
-                            <div class="input-group col-md-12">
-                                <input type="text" id="txt_search" class="form-control input-lg" placeholder="Buscar" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info btn-lg" type="button">
-                                    <a id="btn_search"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>               
+                </ul>                
             </div>
         </nav>
         
 
-        <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel" data-touch="true">
+        <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
@@ -169,7 +147,7 @@ if($num>0){
                     if(isset($paginas_arr)){
                         foreach ($paginas_arr as $pag){
                 ?>
-                <div class="carousel-item" id-pag="<?php echo $pag["id"]; ?>">
+                <div class="carousel-item">
                     <div class="row">
                         
                         <div class="col img-div">
@@ -183,13 +161,13 @@ if($num>0){
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_1_cod"]; ?>" precio="<?php echo $pag["prod_1_pre"]; ?>" nom="<?php echo $pag["prod_1_nom"]; ?>" desc="<?php echo $pag["prod_1_des"]; ?>" id-pag-prod="<?php echo $pag["id"]; ?>" href="#"><?php echo $pag["prod_1_nom"] . ": $" . $pag["prod_1_pre"]; ?></a>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_2_cod"]; ?>" precio="<?php echo $pag["prod_2_pre"]; ?>" nom="<?php echo $pag["prod_2_nom"]; ?>" desc="<?php echo $pag["prod_2_des"]; ?>" id-pag-prod="<?php echo $pag["id"]; ?>" href="#"><?php echo $pag["prod_2_nom"] . ": $" . $pag["prod_2_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_1_cod"]; ?>" precio="<?php echo $pag["prod_1_pre"]; ?>" nom="<?php echo $pag["prod_1_nom"]; ?>" desc="<?php echo $pag["prod_1_desc"]; ?>" href="#"><?php echo $pag["prod_1_nom"] . ": $" . $pag["prod_1_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_2_cod"]; ?>" precio="<?php echo $pag["prod_2_pre"]; ?>" nom="<?php echo $pag["prod_2_nom"]; ?>" desc="<?php echo $pag["prod_2_desc"]; ?>" href="#"><?php echo $pag["prod_2_nom"] . ": $" . $pag["prod_2_pre"]; ?></a>
                                     <?php                                        
                                     if($pag["cant_prod"] == 4) {
                                     ?>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_3_cod"]; ?>" precio="<?php echo $pag["prod_3_pre"]; ?>" nom="<?php echo $pag["prod_3_nom"]; ?>" desc="<?php echo $pag["prod_3_des"]; ?>" id-pag-prod="<?php echo $pag["id"]; ?>" href="#"><?php echo $pag["prod_3_nom"] . ": $" . $pag["prod_3_pre"]; ?></a>
-                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_4_cod"]; ?>" precio="<?php echo $pag["prod_4_pre"]; ?>" nom="<?php echo $pag["prod_4_nom"]; ?>" desc="<?php echo $pag["prod_4_des"]; ?>" id-pag-prod="<?php echo $pag["id"]; ?>" href="#"><?php echo $pag["prod_4_nom"] . ": $" . $pag["prod_4_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_3_cod"]; ?>" precio="<?php echo $pag["prod_3_pre"]; ?>" nom="<?php echo $pag["prod_3_nom"]; ?>" desc="<?php echo $pag["prod_3_desc"]; ?>" href="#"><?php echo $pag["prod_3_nom"] . ": $" . $pag["prod_3_pre"]; ?></a>
+                                    <a class="dropdown-item btn-product" id="<?php echo $pag["prod_4_cod"]; ?>" precio="<?php echo $pag["prod_4_pre"]; ?>" nom="<?php echo $pag["prod_4_nom"]; ?>" desc="<?php echo $pag["prod_4_desc"]; ?>" href="#"><?php echo $pag["prod_4_nom"] . ": $" . $pag["prod_4_pre"]; ?></a>
                                     <?php
                                     }
                                     ?>
@@ -297,40 +275,6 @@ if($num>0){
 
         $( document ).ready(function() {
 
-            // $(".carousel").carousel({
-            //     interval:false,
-            //     pause:true,
-            //     touch:true
-            // });
-            
-            // // enable prev/next navigation
-            // $(".carousel .carousel-control-prev").on("click",function () {
-            //     $(".carousel").carousel("prev");
-            // });
-            
-            // $(".carousel .carousel-control-next").on("click",function () {
-            //     $(".carousel").carousel("next");
-            // });
-
-            // $(".carousel .carousel-inner").swipe({
-            //     swipeLeft:function (event, direction, distance, duration, fingerCount) {
-            //         alert("entra");
-            //         this.parent().carousel("next");
-            //     },
-            //     swipeRight:function () {
-            //         this.parent().carousel("prev");
-            //     },
-            //     threshold: 0,
-            //     tap:function (event, target) {
-            //         window.location = $(this).find(".carousel-item.active a").attr("href");
-            //     },
-            //     excludedElements:"label, button, input, select, textarea, .noSwipe"
-            // });
-
-
-            // $('.carousel').carousel();
-
-
             $(".btn-product").click(function() {
                 carro.AgregarProducto($(this).attr('id'), $(this).attr('nom'), $(this).attr('precio'));
                 $("#cart").text(carro.productos_count);
@@ -371,66 +315,12 @@ if($num>0){
                 $("#cart").text(carro.productos_count);
                 alert("Carrito vaciado");
                 $('#vaciar_carrito_modal').modal('hide')
-            });    
-
-            // $("#myCarousel").swiperight(function() {
-            //     $(this).carousel('prev');
-            //     });
-            // $("#myCarousel").swipeleft(function() {
-            //     $(this).carousel('next');
-            // });     
-
-
-            // $(".carousel-inner").swiperight(function() {  
-    		//   $(this).parent().carousel('prev');  
-	    	// 	});  
-		    // $(".carousel-inner").swipeleft(function() {  
-		    //   $(this).parent().carousel('next');  
-	        // }); 
-
-            // $('.carousel').bcSwipe();
-
-            $("#btn_search").click(function(){
-                buscar();
-            });
-
-            function buscar() {
-                var productos = $(".btn-product");
-                var ids = [];
-                var texto = document.querySelector("#txt_search").value.toLowerCase();
-
-                for (prod of productos)
-                {
-                    var nombre = prod.getAttribute("nom").toLowerCase();
-                    var desc = prod.getAttribute("desc").toLowerCase();
-                    var id = prod.getAttribute("id-pag-prod").toLowerCase();
-                    var nombreBus = nombre.indexOf(texto);
-                    var descBus = desc.indexOf(texto);
-                    
-                    if(nombreBus !=-1 || descBus !=-1){
-                        ids.push(id);
-                    }
-                }
-
-                if (ids.length == 0)
-                {
-                    alert("No hay lo que buscás");
-                    return null;
-                }
-
-                $('.carousel-item').hide();
-                $('.carousel-item').removeClass('active');
-                
-                for (var i = 0; i < ids.length; i++) {
-                    const paginaActiva = ids[i];
-                    $('[id-pag=' + paginaActiva + ']').show();
-                    // $('[id-pag=' + paginaActiva + ']').addClass('active');
-                    
-                }
-                $('[id-pag=' + ids[0] + ']').addClass('active');
-
-            }
+            })
+            
         });
+
+
+
 
     </script>
     

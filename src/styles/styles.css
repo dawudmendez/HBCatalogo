@@ -70,3 +70,11 @@
         object-fit:contain
     }
 }
+
+.swiper-container {
+    /* width: 600px;
+    height: 630px; */
+    text-align: center;
+}
+
+
