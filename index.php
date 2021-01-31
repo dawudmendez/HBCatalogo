@@ -77,6 +77,8 @@ if($num>0){
   
         array_push($paginas_arr, $paginas_item);
     }
+
+    $pag_count = 0;
   
 }
 
@@ -168,6 +170,7 @@ if($num>0){
                 <?php
                     if(isset($paginas_arr)){
                         foreach ($paginas_arr as $pag){
+                            $pag_count++;
                 ?>
                 <div class="carousel-item" id-pag="<?php echo $pag["id"]; ?>">
                     <div class="row">
@@ -198,8 +201,18 @@ if($num>0){
                                 }
                                 ?>  
                             </div>
-                        </div>                        
+                            <div class="col text-center">
+                                <a href="#"><span class="badge rounded-pill bg-primary text-white badge_busq" hidden="true"></span></a>
+                                <span class="badge rounded-pill bg-success text-white">Página <?php echo $pag_count; ?></span>
+                            </div>
+                           
+                        </div> 
+                           
+                                            
                     </div>
+
+                    
+
                 </div>
                 <?php
                     }
@@ -217,8 +230,12 @@ if($num>0){
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+            
+        </button>
 
         </div>
+
+        
         
     </div>
 
@@ -293,43 +310,29 @@ if($num>0){
         </div>
     </div>
 
+    <!-- Búsqueda sin resultados -->
+    <div class="modal fade" id="busqueda_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Búsqueda</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                No hay resultados para su búsqueda.                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <script>
 
         $( document ).ready(function() {
-
-            // $(".carousel").carousel({
-            //     interval:false,
-            //     pause:true,
-            //     touch:true
-            // });
-            
-            // // enable prev/next navigation
-            // $(".carousel .carousel-control-prev").on("click",function () {
-            //     $(".carousel").carousel("prev");
-            // });
-            
-            // $(".carousel .carousel-control-next").on("click",function () {
-            //     $(".carousel").carousel("next");
-            // });
-
-            // $(".carousel .carousel-inner").swipe({
-            //     swipeLeft:function (event, direction, distance, duration, fingerCount) {
-            //         alert("entra");
-            //         this.parent().carousel("next");
-            //     },
-            //     swipeRight:function () {
-            //         this.parent().carousel("prev");
-            //     },
-            //     threshold: 0,
-            //     tap:function (event, target) {
-            //         window.location = $(this).find(".carousel-item.active a").attr("href");
-            //     },
-            //     excludedElements:"label, button, input, select, textarea, .noSwipe"
-            // });
-
-
-            // $('.carousel').carousel();
-
 
             $(".btn-product").click(function() {
                 carro.AgregarProducto($(this).attr('id'), $(this).attr('nom'), $(this).attr('precio'));
@@ -369,40 +372,49 @@ if($num>0){
             $("#vaciar_carrito_btn").click(function(){
                 carro.VaciarCarrito();
                 $("#cart").text(carro.productos_count);
-                alert("Carrito vaciado");
                 $('#vaciar_carrito_modal').modal('hide')
             });    
-
-            // $("#myCarousel").swiperight(function() {
-            //     $(this).carousel('prev');
-            //     });
-            // $("#myCarousel").swipeleft(function() {
-            //     $(this).carousel('next');
-            // });     
-
-
-            // $(".carousel-inner").swiperight(function() {  
-    		//   $(this).parent().carousel('prev');  
-	    	// 	});  
-		    // $(".carousel-inner").swipeleft(function() {  
-		    //   $(this).parent().carousel('next');  
-	        // }); 
-
-            // $('.carousel').bcSwipe();
 
             $("#btn_search").click(function(){
                 buscar();
             });
 
+            $('.badge_busq').click(function(){
+                borrarBusqueda();
+            });
+
+            function borrarBusqueda() {
+                $('#txt_search').val('');
+
+                $('.carousel-item-removed').addClass('carousel-item');
+                $('.carousel-item').removeClass('carousel-item-removed');
+                $('.carousel-item').removeClass('active');
+                $('.carousel-item').attr('hidden', false);
+
+                $('.badge_busq').text('');
+                $('.badge_busq').attr('hidden', true);
+
+                $('.carousel-item').first().addClass('active');
+
+
+            }
+
             function buscar() {
                 var productos = $(".btn-product");
                 var ids = [];
                 var texto = document.querySelector("#txt_search").value.toLowerCase();
+                var texto = texto.replace('á','a').replace('é','e').replace('í','i').replace('ó´','o').replace('ú','u').replace('ü','u');
+
+                if (texto == undefined || texto.trim().length == 0) {
+                    borrarBusqueda();
+
+                    return null;
+                }
 
                 for (prod of productos)
                 {
-                    var nombre = prod.getAttribute("nom").toLowerCase();
-                    var desc = prod.getAttribute("desc").toLowerCase();
+                    var nombre = prod.getAttribute("nom").toLowerCase().replace('á','a').replace('é','e').replace('í','i').replace('ó´','o').replace('ú','u').replace('ü','u');
+                    var desc = prod.getAttribute("desc").toLowerCase().replace('á','a').replace('é','e').replace('í','i').replace('ó´','o').replace('ú','u').replace('ü','u');
                     var id = prod.getAttribute("id-pag-prod").toLowerCase();
                     var nombreBus = nombre.indexOf(texto);
                     var descBus = desc.indexOf(texto);
@@ -414,20 +426,35 @@ if($num>0){
 
                 if (ids.length == 0)
                 {
-                    alert("No hay lo que buscás");
+                    var myModal = new bootstrap.Modal(document.getElementById('busqueda_modal'), {
+                        keyboard: false
+                    })
+                    myModal.show();
+
+                    borrarBusqueda();
+
                     return null;
                 }
 
-                $('.carousel-item').hide();
+                $('.carousel-item').attr('hidden', true);
                 $('.carousel-item').removeClass('active');
+                $('.carousel-item').addClass('carousel-item-removed');
+                $('.carousel-item').removeClass('carousel-item');
+
+                $('.badge_busq').text('Resultados de: ' + texto + '. Click para eliminar');
+                $('.badge_busq').attr('hidden', false);
                 
                 for (var i = 0; i < ids.length; i++) {
                     const paginaActiva = ids[i];
-                    $('[id-pag=' + paginaActiva + ']').show();
+                    $('[id-pag=' + paginaActiva + ']').removeClass('carousel-item-removed');
+                    $('[id-pag=' + paginaActiva + ']').addClass('carousel-item');
+                    $('[id-pag=' + paginaActiva + ']').attr('hidden', false);
                     // $('[id-pag=' + paginaActiva + ']').addClass('active');
                     
                 }
                 $('[id-pag=' + ids[0] + ']').addClass('active');
+
+                // $('.carousel-item').first().addClass('active')
 
             }
         });
