@@ -391,7 +391,7 @@ if($num>0){
                 $('.carousel-item').removeClass('active');
                 $('.carousel-item').attr('hidden', false);
 
-                $('.badge_busq').text('');
+                $('.badge_busq').html('');
                 $('.badge_busq').attr('hidden', true);
 
                 $('.carousel-item').first().addClass('active');
@@ -441,7 +441,7 @@ if($num>0){
                 $('.carousel-item').addClass('carousel-item-removed');
                 $('.carousel-item').removeClass('carousel-item');
 
-                $('.badge_busq').text('Resultados de: ' + texto + '. Click para eliminar');
+                $('.badge_busq').html('<i class="fa fa-window-close" aria-hidden="true"></i> Resultados de: ' + texto + '');
                 $('.badge_busq').attr('hidden', false);
                 
                 for (var i = 0; i < ids.length; i++) {
@@ -449,12 +449,9 @@ if($num>0){
                     $('[id-pag=' + paginaActiva + ']').removeClass('carousel-item-removed');
                     $('[id-pag=' + paginaActiva + ']').addClass('carousel-item');
                     $('[id-pag=' + paginaActiva + ']').attr('hidden', false);
-                    // $('[id-pag=' + paginaActiva + ']').addClass('active');
                     
                 }
                 $('[id-pag=' + ids[0] + ']').addClass('active');
-
-                // $('.carousel-item').first().addClass('active')
 
             }
         });

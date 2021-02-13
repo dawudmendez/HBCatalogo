@@ -19,6 +19,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Páginas
                 </a>
+                <a class="nav-link" href="pagina_controlador.php?accion=ver_todas">
+                    <div class="sb-nav-link-icon"><i class="fas fa-file-upload"></i></div>
+                    Carga de Excel
+                </a>
                 <!-- <div class="sb-sidenav-menu-heading">Páginas</div>
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePaginas" aria-expanded="false" aria-controls="collapsePaginas">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
