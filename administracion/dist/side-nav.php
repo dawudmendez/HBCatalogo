@@ -19,7 +19,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Páginas
                 </a>
-                <a class="nav-link" href="pagina_controlador.php?accion=ver_todas">
+                <a class="nav-link" href="carga_controlador.php?accion=ver">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-upload"></i></div>
                     Carga de Excel
                 </a>
