@@ -13,7 +13,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Cargar Excel</li>
                         </ol>
-                        
+
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header text-white bg-primary" id="headingOne">
@@ -23,8 +23,7 @@
                                 <div id="collapsePag" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">    
                                     <p>Desde esta sección se podrán modificar <strong>los precios</strong> de los productos existentes en el catálogo. <br>
-                                    Seleccione el archivo correspondiente y presione <strong>siguiente</strong> para validar los datos. 
-                                    Tenga en cuenta que <strong>cualquier carga previa</strong>, completada o no, <strong>será eliminada</strong>.</p>     
+                                    Seleccione el archivo correspondiente y presione <strong>siguiente</strong> para validar los datos.</p>   
                                     <form id="form_import_excel" method="POST" enctype="multipart/form-data">      
                                         <input type='hidden' name='crear' value='crear'>               
                                         <div class="form-group" id="div_archivo_excel">
@@ -45,126 +44,30 @@
                                 <div id="collapseProd" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                 <div class="card-body">
 
-                                    <div class="row" id="prod_2_row">
-                                        <div class="col-sm-6">
-                                            <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Producto 1</h5>
-                                                <div class="form-group">
-                                                    <label for="prod_1_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_1_cod" name="prod_1_cod" maxlength="20">
-                                                    <small id="prod_1_cod_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_1_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_1_nom" name="prod_1_nom" maxlength="20">
-                                                    <small id="prod_1_nom_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_1_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_1_desc" name="prod_1_desc" maxlength="20">
-                                                    <small id="prod_1_desc_error" class="form-text text-danger input_error"></small>
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="prod_1_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_1_pre" name="prod_1_pre" maxlength="20" pattern="^\d*(\.\d{0,2})?$">
-                                                    <small id="prod_1_pre_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Producto 2</h5>
-                                                <div class="form-group">
-                                                    <label for="prod_2_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_2_cod" name="prod_2_cod" maxlength="20">
-                                                    <small id="prod_2_cod_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_2_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_2_nom" name="prod_2_nom" maxlength="20">
-                                                    <small id="prod_2_nom_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_2_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_2_desc" name="prod_2_desc" maxlength="20">
-                                                    <small id="prod_2_desc_error" class="form-text text-danger input_error"></small>
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="prod_2_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_2_pre" name="prod_2_pre">
-                                                    <small id="prod_2_pre_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <table id="table_validacion" class="display order-column">
+                                        <thead>
+                                            <tr>
+                                                <th>Código de producto</th>
+                                                <th>Precio</th>
+                                                <th>Estado</th>
+                                                <th>Detalle</th>
+                                                <th>Fecha de inicio</th>
+                                                <th>Fecha de estado</th>
+                                                <th>Número de página</th>
+                                                <th>Número de producto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                     </br>
-                                    <div class="row" id="prod_4_row">
-                                        <div class="col-sm-6">
-                                            <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Producto 3</h5>
-                                                <div class="form-group">
-                                                    <label for="prod_3_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_3_cod" name="prod_3_cod" maxlength="20">
-                                                    <small id="prod_3_cod_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_3_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_3_nom" name="prod_3_nom" maxlength="20">
-                                                    <small id="prod_3_nom_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_3_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_3_desc" name="prod_3_desc" maxlength="20">
-                                                    <small id="prod_3_desc_error" class="form-text text-danger input_error"></small>
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="prod_3_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_3_pre" name="prod_3_pre">
-                                                    <small id="prod_3_pre_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Producto 4</h5>
-                                                <div class="form-group">
-                                                    <label for="prod_4_cod">Código</label>
-                                                    <input type="text" class="form-control" id="prod_4_cod" name="prod_4_cod" maxlength="20">
-                                                    <small id="prod_4_cod_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_4_nom">Nombre</label>
-                                                    <input type="text" class="form-control" id="prod_4_nom" name="prod_4_nom" maxlength="20">
-                                                    <small id="prod_4_nom_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="prod_4_desc">Descripción</label>
-                                                    <input type="text" class="form-control" id="prod_4_desc" name="prod_4_desc" maxlength="20">
-                                                    <small id="prod_4_desc_error" class="form-text text-danger input_error"></small>
-                                                </div> 
-                                                <div class="form-group">
-                                                    <label for="prod_4_pre">Precio</label>
-                                                    <input type="number" min="0.00" step="0.01" value="0.00" class="form-control input_decimal" id="prod_4_pre" name="prod_4_pre">
-                                                    <small id="prod_4_pre_error" class="form-text text-danger input_error"></small>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    </br>
-                                    <!-- <button type="submit" class="btn btn-success">Crear</button> -->
-                                    <a href="#" id="btn_submit" class="btn btn-success">Crear</a> <a href="#" class="btn btn-light" id="prod_atras">Atrás</a>  
+                                    <form id="form_modificar_excel" method="POST" enctype="multipart/form-data">      
+                                        <input type='hidden' name='modificar' value='modificar'>                               
+                                        <a href="#" class="btn btn-success" id="btn_modificar">Guardar</a>
+                                    </form>                                    
                                 </div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
 
                     </div>
@@ -174,6 +77,7 @@
         </div>
 
         <!-- Modals -->
+        <!-- Modal Confirmación Carga Inicial -->
         <div class="modal fade" id="cargar_excel_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -195,7 +99,8 @@
             </div>
         </div>
 
-        <div class="modal fade" id="cargar_excel_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Carga Final -->
+        <div class="modal fade" id="modificar_excel_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -205,12 +110,54 @@
                 </button>
                 </div>
                 <div class="modal-body" id="vaciar_carrito_modal_body">
-                    Al continuar se modificarán los precios de los productos validados. </br>
+                    Los precios de los productos validados serán modificados. </br>
                     ¿Desea continuar?
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="confirmar_carga_btn">Confirmar Modificación</button>
+                <button type="button" class="btn btn-primary" id="confirmar_modificacion_btn">Confirmar Modificación</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal Loading -->
+        <div class="modal fade" id="procesando_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Procesando</h5>
+                </div>
+                <div class="modal-body" id="vaciar_carrito_modal_body">
+                    <div class="text-center">
+                    Aguarde por favor.<br><br>
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <br>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal Finalización -->
+        <div class="modal fade" id="finalizacion_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Carga Finalizada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body" id="vaciar_carrito_modal_body">
+                    La carga finalizó correctamente.
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="finalizacion_modificacion_btn">Salir</button>
                 </div>
             </div>
             </div>
@@ -218,12 +165,19 @@
 
         
         <?php require_once("scripts.php"); ?>
+        <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+        
+        
         <script>
             $(document).ready(function(){
                 
-                $('#form_import_excel').one('submit', function(event) {
+                $('#btn_cargar').click(function(){                    
+                    $('#form_import_excel').submit();
+                });
+                
+                $('#form_import_excel').on('submit', function(event) {
                     event.preventDefault();
-                    $ajax({
+                    $.ajax({
                         url: "carga_controlador.php",
                         method: "POST",
                         data: new FormData(this),
@@ -231,15 +185,88 @@
                         cache: false,
                         processData: false,
                         beforeSend: function() {
-                            $('#import').attr('disabled', 'disabled');
-                            $('#import').val('Importing...');
+                            $('#procesando_modal').modal('show');
                         },
                         success: function(data) {
-                            alert("Ando guacho");
+                            $('#procesando_modal').modal('hide');
+                            $('#form_import_excel')[0].reset();
+                            
+                            var data_parseada = JSON.parse(data);
+                            $('#table_validacion').DataTable({
+                                data: data_parseada,
+                                columns: [
+                                    { data: 'prod_cod' },
+                                    { data: 'precio' },
+                                    { data: 'estado' },
+                                    { data: 'detalle' },
+                                    { data: 'fecha_inicio' },
+                                    { data: 'fecha_estado' },
+                                    { data: 'pag_orden' },
+                                    { data: 'prod_num' }
+                                ],
+                                language: {
+                                    "decimal": "",
+                                    "emptyTable": "No hay información",
+                                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                                    "infoPostFix": "",
+                                    "thousands": ",",
+                                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                                    "loadingRecords": "Cargando...",
+                                    "processing": "Procesando...",
+                                    "search": "Buscar:",
+                                    "zeroRecords": "Sin resultados encontrados",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Ultimo",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    }
+                                }
+                            });
+
+                            $("#collapseProd").collapse('toggle');
+                            $("#headingOne").removeClass("text-white bg-primary");
+                            $("#headingTwo").addClass("text-white bg-primary"); 
+                        },
+                        error: function(data) {
+                            $('#procesando_modal').modal('hide');
                             $('#form_import_excel')[0].reset();
                         }
                     });
                 });
+
+                $('#btn_modificar').click(function(){                    
+                    $('#form_modificar_excel').submit();
+                });
+                
+                $('#form_modificar_excel').on('submit', function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: "carga_controlador.php",
+                        method: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        beforeSend: function() {
+                            $('#procesando_modal').modal('show');
+                        },
+                        success: function(data) {
+                            $('#procesando_modal').modal('hide');
+                            $('#finalizacion_modal').modal('show');                            
+                        },
+                        error: function(data) {
+                            $('#procesando_modal').modal('hide');
+                        }
+                    });
+                });
+
+                $('#finalizacion_modificacion_btn').click(function(){                    
+                    document.location.href="../";
+                });
+                
 
             });       
         </script>
